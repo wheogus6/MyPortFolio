@@ -13,7 +13,7 @@ public class BoardDaoImpl implements BoardDao {
     @Autowired
     private SqlSession session;
 
-    private static String namespace = "com.wheogus.myportfolio.dao.BoardDao.";
+    private static String namespace = "com.wheogus.myportfolio.dao.BoardMapper.";
 
 
     @Override
