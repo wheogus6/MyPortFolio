@@ -13,7 +13,8 @@ public class BoardDto {
     private int view_cnt;
     private Date reg_date;
 
-    public BoardDto() {}
+    public BoardDto() {
+        this("", "", "");}
     public BoardDto(String title, String writer, String content) {
         this.title = title;
         this.writer = writer;

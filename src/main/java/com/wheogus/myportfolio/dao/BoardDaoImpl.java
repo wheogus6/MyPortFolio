@@ -5,7 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -23,7 +25,10 @@ public class BoardDaoImpl implements BoardDao {
 
     @Override
     public int delete(Integer num, String writer) throws Exception {
-        return session.delete(namespace + "delete");
+        Map map = new HashMap();
+        map.put("num", num);
+        map.put("writer", writer);
+        return session.delete(namespace + "delete", map);   //입력값을 받기위해 id 뒤에 반드시 map 입력, 얘는 insert와 다르게 생성자가 없어 map으로 입력받는다.
     }
 
     @Override
@@ -38,7 +43,7 @@ public class BoardDaoImpl implements BoardDao {
 
     @Override
     public int insert(BoardDto dto) throws Exception {
-        return session.insert(namespace + "insert");
+        return session.insert(namespace + "insert", dto);  //매개변수 dto를 반드시 입력 해야함 , 그래야 dto값을 넘겨줄 수 있다.
     }
 
     @Override
