@@ -17,7 +17,7 @@
     </select>
 
     <select id="selectAll" resultType="BoardDto">
-        select * from board order by num desc
+        select * from board order by num
     </select>
 
     <insert id="insert" parameterType="BoardDto">

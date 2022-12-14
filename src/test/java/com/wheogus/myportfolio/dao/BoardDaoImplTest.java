@@ -96,8 +96,10 @@ public class BoardDaoImplTest extends TestCase {
 
         boardDto.setNum(num);
         boardDto2.setNum(num2);
-        boardDto.setTitle("C title");
-        boardDto.setContent("C content");
+        boardDto.setTitle("Change_title");
+        boardDto2.setTitle("Change_title2");
+        boardDto.setContent("Change_content");
+        boardDto2.setContent("Change_content2");
 
         assertTrue(boardDao.update(boardDto)==1);
         System.out.println("boardDto = " + boardDto);

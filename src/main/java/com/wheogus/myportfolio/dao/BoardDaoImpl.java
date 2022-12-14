@@ -48,6 +48,6 @@ public class BoardDaoImpl implements BoardDao {
 
     @Override
     public int update(BoardDto dto) throws Exception {
-        return session.update(namespace + "update");
+        return session.update(namespace + "update", dto);
     }
 }
