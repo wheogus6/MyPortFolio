@@ -1,4 +1,4 @@
-package com.wheogus.myportfolio.sevice;
+package com.wheogus.myportfolio.service;
 
 import com.wheogus.myportfolio.dao.BoardDao;
 import com.wheogus.myportfolio.domain.BoardDto;
