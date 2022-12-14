@@ -74,9 +74,33 @@ public class BoardDaoImplTest extends TestCase {
 
     }
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        assertTrue(boardDao.insert(boardDto)==1);
+        assertTrue(boardDao.count()==1);
+        System.out.println("boardDto = " + boardDto);
     }
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        boardDao.insert(boardDto);
+        boardDao.insert(boardDto2);
+
+        Integer num = boardDao.selectAll().get(0).getNum();
+        Integer num2 = boardDao.selectAll().get(1).getNum();
+        System.out.println("num = " + num);
+        System.out.println("num2 = " + num2);
+
+        boardDto.setNum(num);
+        boardDto2.setNum(num2);
+        boardDto.setTitle("C title");
+        boardDto.setContent("C content");
+
+        assertTrue(boardDao.update(boardDto)==1);
+        System.out.println("boardDto = " + boardDto);
+        System.out.println("boardDto2 = " + boardDto2);
     }
 }
