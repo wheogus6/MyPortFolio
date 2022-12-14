@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -57,7 +59,19 @@ public class BoardDaoImplTest extends TestCase {
     }
 
     @Test
-    public void testSelectAll() {
+    public void testSelectAll() throws Exception {
+        boardDao.deleteAll();
+        List<BoardDto> list = boardDao.selectAll();
+        assertTrue(list.size()==0);
+       BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        assertTrue(boardDao.insert(boardDto)==1);
+        assertTrue(boardDao.insert(boardDto2)==1);
+
+        list = boardDao.selectAll();
+        assertTrue(list.size()==2);
+        System.out.println("list = " + list);
+
     }
     @Test
     public void testInsert() {
