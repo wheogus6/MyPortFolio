@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class BoardServiceImplTest extends TestCase {
@@ -53,18 +55,40 @@ public class BoardServiceImplTest extends TestCase {
     }
 
     @Test
-    public void testGetCount() {
+    public void testGetCount() throws Exception {
+        boardDao.deleteAll();
+        BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        boardDao.insert(boardDto);
+        boardDao.insert(boardDto2);
+        assertTrue(boardDao.count()==2);
+        Integer count = boardDao.count();
+        System.out.println("count = " + count);
     }
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        assertTrue(boardDao.insert(boardDto)==1);
+        assertTrue(boardDao.insert(boardDto2)==1);
     }
 
     @Test
-    public void testGetList() {
+    public void testGetList() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto1 = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        boardDao.insert(boardDto1);
+        boardDao.insert(boardDto2);
+        List<BoardDto> list = boardDao.selectAll();
+        System.out.println("list = " + list);
+        assertTrue(list.size()==2);
     }
 
     @Test
     public void testModify() {
+
     }
 }
