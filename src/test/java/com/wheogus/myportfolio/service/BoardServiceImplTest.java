@@ -19,16 +19,37 @@ public class BoardServiceImplTest extends TestCase {
     @Test
     public void testRemoveAll() throws Exception{
         boardDao.deleteAll();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             BoardDto boardDto = new BoardDto("title", "writer", "content");
             boardDao.insert(boardDto);
         }
+        assertTrue(boardDao.count()==10);
         boardDao.deleteAll();
         assertTrue(boardDao.count()==0);
     }
 
     @Test
-    public void testRemove() {
+    public void testRemove() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        boardDao.insert(boardDto);
+        boardDao.insert(boardDto2);
+        Integer count = boardDao.count();
+        System.out.println(count);
+
+        Integer num = boardDao.selectAll().get(0).getNum();
+        Integer num2 = boardDao.selectAll().get(1).getNum();
+        System.out.println(num);
+        System.out.println(num2);
+
+        assertTrue(boardDao.delete(num,boardDto.getWriter())==1);
+        assertTrue(boardDao.delete(num2,boardDto2.getWriter())==1);
+        assertTrue(boardDao.count()==0);
+
+        Integer count2 = boardDao.count();
+        System.out.println(count2);
+
     }
 
     @Test
