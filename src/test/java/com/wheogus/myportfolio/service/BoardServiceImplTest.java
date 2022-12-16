@@ -88,7 +88,19 @@ public class BoardServiceImplTest extends TestCase {
     }
 
     @Test
-    public void testModify() {
+    public void testModify() throws Exception{
+        boardDao.deleteAll();
+        BoardDto boardDto1 = new BoardDto("title1", "writer1", "content1");
+        BoardDto boardDto2 = new BoardDto("title2", "writer2", "content2");
+        boardDao.insert(boardDto1);
+        boardDao.insert(boardDto2);
+        Integer num = boardDao.selectAll().get(0).getNum();
+        boardDto1.setNum(num);
+        boardDto1.setTitle("title_new");
+        boardDto1.setContent("content_new");
+        assertTrue(boardDao.update(boardDto1)==1);
+        System.out.println("boardDto1 = " + boardDto1);
+
 
     }
 }
