@@ -5,7 +5,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="BoardDto" type="com.wheogus.myportfolio.domain.BoardDto"/>
-
+        <typeAlias alias="UserDto" type="com.wheogus.myportfolio.domain.UserDto"/>
     </typeAliases>
 
 </configuration>
