@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%@ page session="true"%>
+<%@ page session="false"%>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/in' : '/login/logout'}"/>
+<c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
 <!DOCTYPE html>
 
 <head>
@@ -25,7 +28,7 @@
     <ul class="list">
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
-        <li><a href="<c:url value='/'/>">로그인</a></li>
+        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
     </ul>
 

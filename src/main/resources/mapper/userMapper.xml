@@ -16,8 +16,8 @@
         select count(*) from user_info
     </select>
 
-    <select id="selectAll" resultType="UserDto">
-        select * from user_info
+    <select id="select" resultType="UserDto">
+        select * from user_info where id = #{id}
     </select>
 
     <insert id="insert" parameterType="UserDto">

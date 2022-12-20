@@ -1,5 +1,6 @@
 package com.wheogus.myportfolio.dao;
 
+import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.UserDto;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserDao {
 
     int countUser();
 
-    List<UserDto> selectAllUser();
+    UserDto selectUser(String id);
 
     int insertUser(UserDto userDto);
 

@@ -32,8 +32,8 @@ public class UserDaoImpl implements UserDao {
         return session.selectOne(namespace + "count");
     }
     @Override
-    public List<UserDto> selectAllUser(){
-        return session.selectOne(namespace + "selectAll");
+    public UserDto selectUser(String id){
+        return session.selectOne(namespace + "select");
     }
     @Override
     public int insertUser(UserDto userDto){

@@ -1,0 +1,27 @@
+body{background-color:white; margin: 0px;  }
+
+.nav{display: flex; justify-content: space-between;
+    text-decoration-line: none !important;
+    background: linear-gradient(to bottom, navy,darkslateblue,indigo); color: white;
+    background-size: 50px; height: 80px;
+}
+
+a {text-decoration-line: none !important; color: white;}
+
+.title_logo {font-size: 30px; margin: 15px;
+}
+
+.list {display: flex; list-style: none;
+    font-size: 30px;
+    margin: 15px;
+    padding: 0;
+}
+
+.list li {padding: 0px 20px;}
+
+.icon { font-size: 30px; margin: 15px;
+    display: flex; list-style: none;}
+.icon li{padding: 0px 20px;}
+
+
+
