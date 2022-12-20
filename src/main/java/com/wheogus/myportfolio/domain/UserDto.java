@@ -11,30 +11,17 @@ public class UserDto {
     private String email;
     private Date birth;
     private String sns;
-    private Date datetime;
+
 
     public UserDto() {}
-    public UserDto(String id, String pwd, String name, String email, Date birth, String sns, Date datetime) {
+    public UserDto(String id, String pwd, String name, String email, Date birth, String sns) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;
         this.email = email;
         this.birth = birth;
         this.sns = sns;
-        this.datetime = datetime;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserDto userDto = (UserDto) o;
-        return Objects.equals(id, userDto.id) && Objects.equals(pwd, userDto.pwd) && Objects.equals(name, userDto.name) && Objects.equals(email, userDto.email) && Objects.equals(birth, userDto.birth) && Objects.equals(sns, userDto.sns) && Objects.equals(datetime, userDto.datetime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, pwd, name, email, birth, sns, datetime);
     }
 
     public String getId() {
@@ -85,13 +72,22 @@ public class UserDto {
         this.sns = sns;
     }
 
-    public Date getDatetime() {
-        return datetime;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(id, userDto.id) && Objects.equals(pwd, userDto.pwd) && Objects.equals(name, userDto.name) && Objects.equals(email, userDto.email) && Objects.equals(birth, userDto.birth) && Objects.equals(sns, userDto.sns);
     }
 
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pwd, name, email, birth, sns);
     }
+
+
 
     @Override
     public String toString() {
@@ -102,7 +98,6 @@ public class UserDto {
                 ", email='" + email + '\'' +
                 ", birth=" + birth +
                 ", sns='" + sns + '\'' +
-                ", datetime=" + datetime +
                 '}';
     }
 }

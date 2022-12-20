@@ -1,24 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wheogus6
-  Date: 2022/12/17
-  Time: 3:18 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Hello</title>
-</head>
-<body>
-
-</body>
-</html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%@ page session="true"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.net.URLDecoder"%>
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +17,7 @@
 
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -55,9 +41,11 @@
 </nav>
 <div style="margin:auto;text-align:center;">
 
-<form action="<c:url value="/register/plusUser"/>" method="post">
+
+<%--<c:url value='/register/save'/>"--%>
+    <form:form modelAttribute="userDto">
     <div class="title">회원가입</div>
-<%--    <div id="msg" class="msg"><form:errors path="id"/></div>--%>
+        <div id="msg" class="msg"><form:errors path="id"/></div>
     <label for="">아이디</label>
     <input class="input-field" type="text" name="id" placeholder="8~12자리">
     <label for="">비밀번호</label>
@@ -73,12 +61,24 @@
         <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
         <label><input type="checkbox" name="sns" value="instagram"/>인스타그램</label>
     </div>
-    <button id="saveUserBtn" class="save-userInfo">회원 가입</button>
-<%--    <button id="saveUserBtn" class="save-userInfo" onclick="<c:url value="/register/plusUser"/>">회원 가입</button>--%>
-</form>
+    <button>회원 가입</button>
+    </form:form>
 </div>
+<script>
+    function formCheck(frm) {
+        let msg ='';
+        if(frm.id.value.length<3) {
+            setMessage('id의 길이는 3이상이어야 합니다.', frm.id);
+            return false;
+        }
+        return true;
+    }
+    function setMessage(msg, element){
+        document.getElementById("msg").innerHTML = `<i class="fa fa-exclamation-circle"> ${'${msg}'}</i>`;
+        if(element) {
+            element.select();
+        }
+    }
+</script>
 </body>
-
-
-
 </html>

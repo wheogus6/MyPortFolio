@@ -17,12 +17,12 @@
     </select>
 
     <select id="selectAll" resultType="UserDto">
-        select * from user_info order by reg_date
+        select * from user_info
     </select>
 
     <insert id="insert" parameterType="UserDto">
-        insert into user_info (id, pwd, name, email, birth, sns, reg_date)
-        values (#{id}, #{pwd}, #{name}, #{email}, #{birth}, #{sns}, #{reg_date});
+        insert into user_info (id, pwd, name, email, birth, sns)
+        values (#{id}, #{pwd}, #{name}, #{email}, #{birth}, #{sns});
     </insert>
 
     <update id="update" parameterType="UserDto">

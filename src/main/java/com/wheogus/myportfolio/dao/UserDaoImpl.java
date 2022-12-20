@@ -37,10 +37,10 @@ public class UserDaoImpl implements UserDao {
     }
     @Override
     public int insertUser(UserDto userDto){
-        return session.insert(namespace + "insert");
+        return session.insert(namespace + "insert", userDto);
     }
     @Override
     public int updateUser(UserDto userDto){
-        return session.update(namespace + "update");
+        return session.update(namespace + "update", userDto);
     }
 }

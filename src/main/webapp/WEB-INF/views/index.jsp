@@ -25,7 +25,7 @@
     <ul class="list">
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
-        <li><a href="<c:url value=''/>">로그인</a></li>
+        <li><a href="<c:url value='/'/>">로그인</a></li>
         <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
     </ul>
 
