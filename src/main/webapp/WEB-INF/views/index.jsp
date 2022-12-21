@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 
 <body>

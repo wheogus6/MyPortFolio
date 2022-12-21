@@ -5,8 +5,9 @@
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/in' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,8 +17,6 @@
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/registerFormStyle.css'/>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -40,12 +39,12 @@
     <div class="icon">
         <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     </div>
 </nav>
+
 <div style="margin:auto;text-align:center;">
 
-
-<%--<c:url value='/register/save'/>"--%>
     <form:form modelAttribute="userDto">
     <div class="title">회원가입</div>
         <div id="msg" class="msg"><form:errors path="id"/></div>
@@ -58,7 +57,8 @@
     <label for="">이메일</label>
     <input class="input-field" type="text" name="email" placeholder="example@aaaa.com">
     <label for="">생일</label>
-    <input class="input-field" type="text" name="birth" placeholder="2020-12-31">
+        <input class="input-field" type="text" name="birth" placeholder="2020-12-31">
+
     <div class="sns-chk">
         <label><input type="checkbox" name="sns" value="facebook"/>페이스북</label>
         <label><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</label>
@@ -66,6 +66,7 @@
     </div>
     <button>회원 가입</button>
     </form:form>
+
 </div>
 <script>
     function formCheck(frm) {

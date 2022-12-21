@@ -14,8 +14,10 @@
             "space_man.png" rel="shortcut icon" type="image/x-icon">
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/loginFormStyle.css'/>">
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -36,9 +38,7 @@
         <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-        <link rel="stylesheet" href="<c:url value='/css/loginFormStyle.css'/>">
     </div>
-
 </nav>
 
 <form action="<c:url value="/login/in"/>" method="post" onsubmit="return formCheck(this);">
