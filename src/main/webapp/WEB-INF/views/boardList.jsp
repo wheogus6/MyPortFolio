@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
-<%@ page session="true"%>
+<%@ page session="false"%>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/in' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? '로그인' : '로그아웃'}"/>
@@ -10,10 +10,6 @@
     <title>Hello</title>
 </head>
 
-</html><%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<%@ page session="true"%>
-<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">

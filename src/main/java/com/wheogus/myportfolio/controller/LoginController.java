@@ -24,8 +24,7 @@ public class LoginController {
     }
 
     @PostMapping("/in")
-    public String login(String id, String pwd, String toURL, boolean rememberId, HttpServletRequest request,
-                        HttpServletResponse response) throws Exception{
+    public String login(String id, String pwd, String toURL, boolean rememberId, HttpServletRequest request, HttpServletResponse response) throws Exception{
         //id, pwd 데이터 검증
         if (!loginCheck(id, pwd)) {
             String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.", "utf-8");

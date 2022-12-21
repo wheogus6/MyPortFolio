@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
     }
     @Override
     public UserDto selectUser(String id){
-        return session.selectOne(namespace + "select");
+        return session.selectOne(namespace + "select", id);  //잊자말고 id값 꼭 주기
     }
     @Override
     public int insertUser(UserDto userDto){
