@@ -1,6 +1,7 @@
 package com.wheogus.myportfolio.dao;
 
 import com.wheogus.myportfolio.domain.BoardDto;
+import com.wheogus.myportfolio.domain.SearchCondition;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,5 +50,14 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public int update(BoardDto dto) throws Exception {
         return session.update(namespace + "update", dto);
+    }
+
+    @Override
+    public List<BoardDto> searchSelectPage(SearchCondition sc) throws Exception {
+        return session.selectOne(namespace + "searchSelectPage", sc);
+    }
+    @Override
+    public int searchResultCnt(SearchCondition sc) throws Exception{
+        return session.selectOne(namespace + "searchResultCnt", sc);
     }
 }

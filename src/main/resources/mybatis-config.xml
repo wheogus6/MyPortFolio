@@ -6,6 +6,7 @@
     <typeAliases>
         <typeAlias alias="BoardDto" type="com.wheogus.myportfolio.domain.BoardDto"/>
         <typeAlias alias="UserDto" type="com.wheogus.myportfolio.domain.UserDto"/>
+        <typeAlias alias="SearchCondition" type="com.wheogus.myportfolio.domain.SearchCondition"/>
     </typeAliases>
 
 </configuration>

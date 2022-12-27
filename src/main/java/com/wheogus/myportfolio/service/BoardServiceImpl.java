@@ -2,6 +2,7 @@ package com.wheogus.myportfolio.service;
 
 import com.wheogus.myportfolio.dao.BoardDao;
 import com.wheogus.myportfolio.domain.BoardDto;
+import com.wheogus.myportfolio.domain.SearchCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,15 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.update(dto);
     }
 
+    @Override
+    public List<BoardDto> getSearchSelectPage(SearchCondition sc) throws Exception{
+        return boardDao.searchSelectPage(sc);
+    }
+
+    @Override
+    public int getSearchResultCnt(SearchCondition sc) throws Exception {
+        return boardDao.searchResultCnt(sc);
+    }
 
 
 

@@ -33,4 +33,34 @@
             content = #{content}
         where num = #{num}
     </update>
+
+    <sql id="searchCondition">
+        <choose>
+            <when test='option=="T"'>
+                and title like concat('%', #{keyword}, '%')
+            </when>
+            <when test='option=="W"'>
+                and writer like concat('%', #{keyword}, '%')
+            </when>
+            <otherwise>
+                and (writer like concat('%', #{keyword}, '%')
+                or concat like concat('%', #{keyword}, '%'))
+            </otherwise>
+        </choose>
+    </sql>
+
+    <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
+        select num, title, writer, content, comment_cnt, view_cnt, reg_date
+        from board
+        where true <include refid="searchCondition"/>
+        order by num DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="searchResultCnt" parameterType="SearchCondition" resultType="int">
+        select count(*)
+        from board
+        where true
+        <include refid="searchCondition"/>
+    </select>
 </mapper>

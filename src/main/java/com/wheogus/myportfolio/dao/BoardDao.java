@@ -1,6 +1,7 @@
 package com.wheogus.myportfolio.dao;
 
 import com.wheogus.myportfolio.domain.BoardDto;
+import com.wheogus.myportfolio.domain.SearchCondition;
 
 import java.util.List;
 
@@ -18,4 +19,7 @@ public interface BoardDao {
 
     int update(BoardDto dto) throws Exception;
 
+    List<BoardDto> searchSelectPage(SearchCondition sc) throws  Exception;
+
+    int searchResultCnt(SearchCondition sc) throws Exception;
 }
