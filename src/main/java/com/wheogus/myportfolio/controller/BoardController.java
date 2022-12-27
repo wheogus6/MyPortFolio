@@ -47,7 +47,7 @@ public class BoardController {
 
             List<BoardDto> list = boardService.getSearchSelectPage(sc);
             model.addAttribute("list", list);
-            model.addAttribute("pageHandler", pageHandler);
+            model.addAttribute("ph", pageHandler);
 
             Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
             model.addAttribute("startOfToday", startOfToday.toEpochMilli());
