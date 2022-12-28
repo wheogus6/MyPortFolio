@@ -59,7 +59,18 @@ public class BoardController {
         return "boardList";
     }
 
-
+    @GetMapping("/read")
+    public String read(Integer num, Integer page, Integer pageSize, Model model) {
+        try {
+            BoardDto boardDto = boardService.read(num);
+            model.addAttribute(boardDto);
+            model.addAttribute("page", page);
+            model.addAttribute("pageSize", pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "board";
+    }
 
     @GetMapping("/write")
     public String write(Model model) {

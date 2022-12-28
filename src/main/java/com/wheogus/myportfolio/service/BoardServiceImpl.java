@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -54,6 +55,17 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.searchResultCnt(sc);
     }
 
+    @Override
+    public BoardDto read(Integer num) throws Exception {
+        BoardDto boardDto = boardDao.select(num);
+        boardDao.increaseViewCnt(num);
+        return boardDto;
+    }
+
+    @Override
+    public List<BoardDto> selectPage(Map map) throws Exception {
+        return boardDao.selectPage(map);
+    }
 
 
 

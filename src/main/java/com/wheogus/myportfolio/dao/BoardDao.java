@@ -4,6 +4,7 @@ import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.SearchCondition;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardDao {
 
@@ -22,4 +23,10 @@ public interface BoardDao {
     List<BoardDto> searchSelectPage(SearchCondition sc) throws  Exception;
 
     int searchResultCnt(SearchCondition sc) throws Exception;
+
+    BoardDto select(Integer num) throws Exception;
+
+    List<BoardDto> selectPage(Map map) throws Exception;
+
+    int increaseViewCnt(Integer num) throws Exception;
 }

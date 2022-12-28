@@ -51,7 +51,7 @@
     <input type="text" name="id" value="${cookie.id.value}" placeholder="아이디" autofocus>
     <input type="password" name="pwd" placeholder="비밀번호">
     <input type="hidden" name="toURL" value="${param.toURL}">
-    <button>${loginOut}</button>
+    <button>로그인</button>
     <div>
         <label><input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value ? "":"checked"}> 아이디 기억</label>
 

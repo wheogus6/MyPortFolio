@@ -3,6 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wheogus.myportfolio.dao.BoardMapper">
+    
+    <sql id="selectFromBoard">
+        select num, title, writer, content, comment_cnt, view_cnt, reg_date
+        from board
+    </sql>
+    
+    <select id="select" parameterType="int" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
+        where num = #{num}
+    </select>
+
+    <select id="selectPage" parameterType="map" resultType="BoardDto">
+        <include refid="selectFromBoard"/>
+        order by reg_date desc, num desc
+        LIMIT #{offset}, #{pageSize}
+    </select>
 
     <delete id="deleteAll">
         delete from board
@@ -63,4 +79,10 @@
         where true
         <include refid="searchCondition"/>
     </select>
+    
+    <update id="increaseViewCnt" parameterType="int">
+        update board
+        set view_cnt = view_cnt + 1
+        where num = #{num}
+    </update>
 </mapper>

@@ -4,6 +4,7 @@ import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.SearchCondition;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
     int removeAll() throws Exception;
@@ -22,4 +23,8 @@ public interface BoardService {
     List<BoardDto> getSearchSelectPage(SearchCondition sc) throws Exception;
 
     int getSearchResultCnt(SearchCondition sc) throws Exception;
+
+    BoardDto read(Integer num) throws Exception;
+
+    List<BoardDto> selectPage(Map map) throws Exception;
 }
