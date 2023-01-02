@@ -28,7 +28,7 @@ public class PageHandler {
     private void doPaging(int totalCnt, SearchCondition sc) {
         this.totalCnt = totalCnt;
             // Math.ceil : 소수값이 존재할 때 값을 올림
-        totalPage = (int) Math.ceil(totalCnt / (double) sc.getPageSize());
+        totalPage = (int)Math.ceil(totalCnt / (double)sc.getPageSize());
         beginP = (sc.getPage()-1)/naviSize * naviSize +1;
         endP = Math.min(beginP + naviSize -1, totalPage);
         showPrev = beginP != 1;

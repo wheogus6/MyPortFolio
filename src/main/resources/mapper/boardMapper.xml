@@ -68,8 +68,9 @@
     <select id="searchSelectPage" parameterType="SearchCondition" resultType="BoardDto">
         select num, title, writer, content, comment_cnt, view_cnt, reg_date
         from board
-        where true <include refid="searchCondition"/>
-        order by num DESC
+        where true
+        <include refid="searchCondition"/>
+        order by reg_date DESC, num desc
         LIMIT #{offset}, #{pageSize}
     </select>
 

@@ -103,13 +103,13 @@
                 </c:if>
                 <c:if test="${totalCnt!=null && totalCnt!=0}">
                     <c:if test="${ph.showPrev}">
-                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.beginPage-1)}"/>">&lt;</a>
+                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.beginP-1)}"/>">&lt;</a>
                     </c:if>
-                    <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+                    <c:forEach var="i" begin="${ph.beginP}" end="${ph.endP}">
                         <a class="page ${i==ph.sc.page? "paging-active" : ""}" href="<c:url value="/board/list${ph.sc.getQueryString(i)}"/>">${i}</a>
                     </c:forEach>
                     <c:if test="${ph.showNext}">
-                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
+                        <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endP+1)}"/>">&gt;</a>
                     </c:if>
                 </c:if>
             </div>
