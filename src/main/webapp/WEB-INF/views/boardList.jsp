@@ -71,17 +71,18 @@
         </div>
 
         <table>
+
             <tr>
                 <th class="no">번호</th>
                 <th class="title">제목</th>
-                <th class="writer">이름</th>
+                <th class="writer">아이디</th>
                 <th class="regdate">등록일</th>
                 <th class="viewcnt">조회수</th>
             </tr>
             <c:forEach var="boardDto" items="${list}">
                 <tr>
                     <td class="no">${boardDto.num}</td>
-                    <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&num=${boardDto.num}"/>"><c:out value="${boardDto.title}"/></a></td>
+                    <td class="title"><a  style="text-decoration: none; color: black;" href="<c:url value="/board/read${ph.sc.queryString}&num=${boardDto.num}"/>"><c:out value="${boardDto.title}"/> </a></td>
                     <td class="writer">${boardDto.writer}</td>
                     <c:choose>
                         <c:when test="${boardDto.reg_date.time >= startOfToday}">

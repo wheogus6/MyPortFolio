@@ -5,6 +5,9 @@
     font-family: "Noto Sans KR", sans-serif;
 }
 
+
+
+
 button,
 input {
     border: none;
@@ -84,11 +87,11 @@ td {
     border-bottom: 1px solid #ddd;
 }
 td {
-    color: rgb(53, 53, 53);
+    color: black;
 }
 .no      { width:150px;}
 .title   { width:50%;  }
-td.title   { text-align: left;  }
+td.title   { text-align: left; color: black  }
 td.writer  { text-align: left;  }
 td.viewcnt { text-align: right; }
 td.title:hover {

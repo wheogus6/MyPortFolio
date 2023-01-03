@@ -60,7 +60,7 @@
             </when>
             <otherwise>
                 and (writer like concat('%', #{keyword}, '%')
-                or concat like concat('%', #{keyword}, '%'))
+                or content like concat('%', #{keyword}, '%'))
             </otherwise>
         </choose>
     </sql>
