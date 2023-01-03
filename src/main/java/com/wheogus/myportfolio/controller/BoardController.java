@@ -36,9 +36,9 @@ public class BoardController {
 
     @GetMapping("/list")
     public String listForm(Model model, SearchCondition sc, HttpServletRequest request) {
-        if (!loginCheck(request))
+        if (!loginCheck(request)) {
             return "redirect:/login/in?toURL=" + request.getRequestURL(); //loginCheck가 false라면 login화면으로 이동.
-
+        }
         try {
             int totalCnt = boardService.getSearchResultCnt(sc);
             model.addAttribute("totalCnt", totalCnt);
