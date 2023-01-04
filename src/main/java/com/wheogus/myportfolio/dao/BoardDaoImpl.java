@@ -74,5 +74,6 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public int increaseViewCnt(Integer num) throws Exception{
         return session.update(namespace + "increaseViewCnt", num);
+        //데이터 베이스에서 view_cnt 디폴트 값을 0으로 설정 해야 조회수 오름
     }
 }

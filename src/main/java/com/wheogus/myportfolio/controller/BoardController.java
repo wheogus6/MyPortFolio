@@ -117,4 +117,24 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @PostMapping("/modify")
+    public String modify(BoardDto boardDto, HttpSession session, Model model, RedirectAttributes ratter) {
+        String writer = (String) session.getAttribute("id");
+        boardDto.setWriter(writer);
+
+        try {
+            int rowCnt = boardService.modify(boardDto);
+            if (rowCnt != 1) {
+                throw new Exception("Modify failed");
+            }
+            ratter.addFlashAttribute("msg", "MOD_OK");
+            return "redirect:/board/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute(boardDto);
+            model.addAttribute("msg", "MOD_ERR");
+            return "board";
+        }
+    }
+
 }
