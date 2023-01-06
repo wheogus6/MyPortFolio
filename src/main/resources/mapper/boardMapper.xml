@@ -10,7 +10,8 @@
     </sql>
     
     <select id="select" parameterType="int" resultType="BoardDto">
-        <include refid="selectFromBoard"/>
+        select num, title, writer, content, comment_cnt, view_cnt, reg_date
+        from board
         where num = #{num}
     </select>
 
@@ -84,6 +85,12 @@
     <update id="increaseViewCnt" parameterType="int">
         update board
         set view_cnt = view_cnt + 1
+        where num = #{num}
+    </update>
+
+    <update id="updateCommentCnt" parameterType="map">
+        update board
+        set comment_cnt = comment_cnt + #{cnt}
         where num = #{num}
     </update>
 </mapper>

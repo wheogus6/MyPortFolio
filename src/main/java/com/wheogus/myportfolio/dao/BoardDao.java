@@ -29,4 +29,6 @@ public interface BoardDao {
     List<BoardDto> selectPage(Map map) throws Exception;
 
     int increaseViewCnt(Integer num) throws Exception;
+
+    int updateCommentCnt(Integer num, int cnt);
 }

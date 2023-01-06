@@ -13,12 +13,11 @@ public class CommentDto {
 
     public CommentDto() {}
 
-    public CommentDto(Integer cno, Integer num, String comment, String commenter, Date reg_date) {
+    public CommentDto(Integer cno, Integer num, String comment, String commenter) {
         this.cno = cno;
         this.num = num;
         this.comment = comment;
         this.commenter = commenter;
-        this.reg_date = reg_date;
     }
 
     public Integer getCno() {
@@ -77,11 +76,11 @@ public class CommentDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CommentDto that = (CommentDto) o;
-        return Objects.equals(cno, that.cno) && Objects.equals(num, that.num) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter) && Objects.equals(reg_date, that.reg_date);
+        return Objects.equals(cno, that.cno) && Objects.equals(num, that.num) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cno, num, comment, commenter, reg_date);
+        return Objects.hash(cno, num, comment, commenter);
     }
 }
