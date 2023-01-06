@@ -7,6 +7,7 @@
         <typeAlias alias="BoardDto" type="com.wheogus.myportfolio.domain.BoardDto"/>
         <typeAlias alias="UserDto" type="com.wheogus.myportfolio.domain.UserDto"/>
         <typeAlias alias="CommentDto" type="com.wheogus.myportfolio.domain.CommentDto"/>
+
         <typeAlias alias="SearchCondition" type="com.wheogus.myportfolio.domain.SearchCondition"/>
     </typeAliases>
 

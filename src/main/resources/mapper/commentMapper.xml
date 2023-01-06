@@ -21,7 +21,7 @@
         where num = #{num}
     </select>
 
-    <insert id="insert" parameterType="CommnentDto">
+    <insert id="insert" parameterType="CommentDto">
         insert into comment
             (num, comment, commenter, reg_date)
         values
@@ -31,7 +31,7 @@
     <delete id="delete" parameterType="map">
         delelte from comment where cno = #{cno} and commenter = #{commneter}
     </delete>
-    
+
     <update id="update" parameterType="CommentDto">
         update comment
         set comment = #{comment}
