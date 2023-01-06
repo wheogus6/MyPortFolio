@@ -1,29 +1,22 @@
 package com.wheogus.myportfolio.service;
 
-import com.wheogus.myportfolio.dao.BoardDao;
-import com.wheogus.myportfolio.dao.CommentDao;
 import com.wheogus.myportfolio.domain.CommentDto;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class CommentService {
+public interface CommentService {
+    int count(Integer num) throws Exception;
 
-    BoardDao boardDao;
-    CommentDao commentDao;
+    List<CommentDto> getList(Integer num) throws Exception;
 
-    public int count(Integer num) throws Exception{
-        return commentDao.count(num);
-    }
+    CommentDto read(Integer cno) throws Exception;
 
-    public List<CommentDto> selectAll(Integer num) throws Exception{
-        return commentDao.selectAll(num);
-    }
+    @Transactional(rollbackFor = Exception.class)
+    int delete(Integer cno, Integer num, String commenter) throws Exception;
 
-    public CommentDto select(Integer cno) throws Exception {
-        return commentDao.select(cno);
-    }
+    @Transactional(rollbackFor = Exception.class)
+    int write(CommentDto commentDto) throws Exception;
 
-//    public int delete(Integer cno, String commenter) throws Exception {
-//
-//    }
+    int modify(CommentDto commentDto) throws Exception;
 }
