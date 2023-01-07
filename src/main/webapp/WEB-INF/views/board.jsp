@@ -128,29 +128,44 @@
 </body>
 
 
-<c:if test="${mode ne 'new'}">
+<%--<c:if test="${mode ne 'new'}">--%>
 <body>
 <div class="container">
     <br>
     <h3>댓글 달기</h3>
     <link rel="stylesheet" href="<c:url value='/css/commentStyle.css'/>">
 
-    <textarea name="newcomment" id="comment" rows="3" placeholder="댓글을 입력해주세요."><c:out value='${commentDto.commnent}'/></textarea>
+    <textarea name="newcomment" id="comment" rows="3" placeholder="댓글을 입력해주세요."><c:out value='${commentDto.comment}'/></textarea>
     <button type="button" id="writeComment" class="btn comment-write"><i class="fa fa-pencil"></i>등록</button>
 
 
     <br><br>
     <h3>댓글</h3>
-<%--    <c:forEach var="commentDto" items="${list}">--%>
-    <input type="hidden" name="num" value="${commentDto.num}">
-    <input name="commenter" type="text" value="<c:out value= '${commnetDto.commenter}'/>">
-    <textarea name="comment" id="comment" rows="3"><c:out value='${commentDto.commnent}'/></textarea>
-    <c:if test="${boardDto.writer eq loginId}">
-        <button type="button" id="modifyComment" class="btn comment-modify"><i class="fa fa-edit"></i> 수정</button>
-        <button type="button" id="removeComment" class="btn commnet-remove"><i class="fa fa-trash"></i> 삭제</button>
-    </c:if>
-<%--    </c:forEach>--%>
+
+
+<%--    <input type="hidden" name="num" value="${commentDto.num}">--%>
+<%--    <input name="commenter" type="text" value="<c:out value= '${commentDto.commenter}'/>">--%>
+<%--    <textarea name="comment" id="comment" rows="3"><c:out value='${commentDto.comment}'/></textarea>--%>
+<%--    <c:if test="${boardDto.writer eq loginId}">--%>
+<%--        <button type="button" id="modifyComment" class="btn comment-modify"><i class="fa fa-edit"></i> 수정</button>--%>
+<%--        <button type="button" id="removeComment" class="btn comment-remove"><i class="fa fa-trash"></i> 삭제</button>--%>
+<%--    </c:if>--%>
+
+    <table>
+        <tr>
+            <th class="no">댓글번호</th>
+            <th class="commenter">아이디</th>
+            <th class="comment">댓글</th>
+        </tr>
+        <c:forEach var="commentDto" items="${commentList}">
+            <tr>
+                <td class="no">${commentDto.num}</td>
+                <td class="commenter">${commentDto.commenter}</td>
+                <td class="comment">${commentDto.comment}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
 </body>
-</c:if>
+<%--</c:if>--%>
 </html>

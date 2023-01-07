@@ -27,26 +27,27 @@ public class CommentController {
     BoardService boardService;
 
     @GetMapping("/list")
-    public String commentList(Model model, Integer num){
+    public String commentList(Model model, BoardDto boardDto){
         try {
+            Integer num = boardDto.getNum();
             List<CommentDto> list = service.getList(num);
-            model.addAttribute("list", list);
+            model.addAttribute("commentList", list);
             Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
             model.addAttribute("startOfToday", startOfToday.toEpochMilli());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/board";
+        return "redirect:/board/read";
     }
 
     @GetMapping("/write")
     public String write(Model model) {
 //        model.addAttribute("mode", "new");
-        return "/board";
+        return "redirect:/comments/list";
     }
 
     @PostMapping("/write")
-    public String write(@RequestBody CommentDto commentDto, BoardDto boardDto, HttpSession session) {
+    public String write(CommentDto commentDto, BoardDto boardDto, HttpSession session, Model model) {
         String commenter = (String)session.getAttribute("id");
         Integer num = boardDto.getNum();
         commentDto.setCommenter(commenter);
@@ -57,10 +58,11 @@ public class CommentController {
             if (newComment != 1) {
                 throw new Exception("error");
             }
-            return "/board";
+            return "board";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/board";
+            model.addAttribute(commentDto);
+            return "board";
         }
     }
 
