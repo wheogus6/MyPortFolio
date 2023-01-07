@@ -1,46 +1,66 @@
 package com.wheogus.myportfolio.controller;
 
+import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.CommentDto;
+import com.wheogus.myportfolio.service.BoardService;
 import com.wheogus.myportfolio.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/comments")
 public class CommentController {
 
     @Autowired
     CommentService service;
+    @Autowired
+    BoardService boardService;
 
-    @GetMapping("/comments")
-    public ResponseEntity<List<CommentDto>> list(Integer num) {
-        List<CommentDto> list = null;
+    @GetMapping("/list")
+    public String commentList(Model model, Integer num){
         try {
-            list = service.getList(num);
-            return new ResponseEntity<List<CommentDto>>(list, HttpStatus.OK);
+            List<CommentDto> list = service.getList(num);
+            model.addAttribute("list", list);
+            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+            model.addAttribute("startOfToday", startOfToday.toEpochMilli());
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<List<CommentDto>>(HttpStatus.BAD_REQUEST);
         }
+        return "/board";
     }
 
-    @PostMapping("/comments")
-    public ResponseEntity<String> write(@RequestBody CommentDto commentDto, Integer num, HttpSession session) {
+    @GetMapping("/write")
+    public String write(Model model) {
+//        model.addAttribute("mode", "new");
+        return "/board";
+    }
+
+    @PostMapping("/write")
+    public String write(@RequestBody CommentDto commentDto, BoardDto boardDto, HttpSession session) {
         String commenter = (String)session.getAttribute("id");
+        Integer num = boardDto.getNum();
         commentDto.setCommenter(commenter);
         commentDto.setNum(num);
+
         try {
-            if (service.write(commentDto) != 1) {
-                throw new Exception("Write failed!");
+            int newComment = service.write(commentDto);
+            if (newComment != 1) {
+                throw new Exception("error");
             }
-            return new ResponseEntity<>("WRT_OK", HttpStatus.OK);
+            return "/board";
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("WET_ERR", HttpStatus.BAD_REQUEST);
+            return "/board";
         }
     }
 
@@ -75,3 +95,4 @@ public class CommentController {
         }
     }
 }
+

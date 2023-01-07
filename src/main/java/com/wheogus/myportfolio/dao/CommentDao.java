@@ -17,3 +17,4 @@ public interface CommentDao {
 
     int insert(CommentDto commentDto) throws Exception;
 }
+
