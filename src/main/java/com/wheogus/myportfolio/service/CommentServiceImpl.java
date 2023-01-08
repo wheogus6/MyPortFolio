@@ -41,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int write(CommentDto commentDto) throws Exception {
-        boardDao.updateCommentCnt(commentDto.getNum(), 1);
+        boardDao.updateCommentCnt(commentDto.getNum(), 1);  //Board 와 comment의 num은 같은 숫자
         return commentDao.insert(commentDto);
     }
     @Override

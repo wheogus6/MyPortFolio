@@ -16,5 +16,7 @@ public interface CommentDao {
     int update(CommentDto commentDto) throws Exception;
 
     int insert(CommentDto commentDto) throws Exception;
+
+    int deleteAll();
 }
 

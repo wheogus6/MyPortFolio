@@ -50,4 +50,9 @@ public class CommentDaoImpl implements CommentDao{
     public int insert(CommentDto commentDto) throws Exception {
         return session.insert(namespace + "insert", commentDto);
     }
+
+    @Override
+    public int deleteAll() {
+        return session.delete(namespace + "deleteAll");
+    }
 }

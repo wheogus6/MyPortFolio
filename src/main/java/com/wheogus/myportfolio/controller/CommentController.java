@@ -26,43 +26,49 @@ public class CommentController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping("/list")
-    public String commentList(Model model, BoardDto boardDto){
-        try {
-            Integer num = boardDto.getNum();
-            List<CommentDto> list = service.getList(num);
-            model.addAttribute("commentList", list);
-            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-            model.addAttribute("startOfToday", startOfToday.toEpochMilli());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "redirect:/board/read";
-    }
+//    @GetMapping("/list")
+//    public String commentList(Model model, BoardDto boardDto){
+//        try {
+//            Integer num = boardDto.getNum();
+//            List<CommentDto> list = service.getList(num);
+//            model.addAttribute("commentList", list);
+//            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
+//            model.addAttribute("startOfToday", startOfToday.toEpochMilli());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "redirect:/board/read";
+//    }
 
     @GetMapping("/write")
-    public String write(Model model) {
-//        model.addAttribute("mode", "new");
-        return "redirect:/comments/list";
+    public ResponseEntity<List<CommentDto>> list(Integer num) {
+        List<CommentDto> list = null;
+        try {
+            list = service.getList(num);
+            return new ResponseEntity<List<CommentDto>>(list, HttpStatus.OK);  // 200
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<List<CommentDto>>(HttpStatus.BAD_REQUEST); // 400
+        }
     }
 
+
     @PostMapping("/write")
-    public String write(CommentDto commentDto, BoardDto boardDto, HttpSession session, Model model) {
+    public ResponseEntity<String> write(CommentDto commentDto, Integer num, HttpSession session, Model model) {
         String commenter = (String)session.getAttribute("id");
-        Integer num = boardDto.getNum();
         commentDto.setCommenter(commenter);
         commentDto.setNum(num);
 
+        System.out.println("commentDto = " + commentDto);
+
         try {
-            int newComment = service.write(commentDto);
-            if (newComment != 1) {
-                throw new Exception("error");
-            }
-            return "board";
+            if(service.write(commentDto)!=1)
+                throw new Exception("Write failed.");
+
+            return new ResponseEntity<>("WRT_OK", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute(commentDto);
-            return "board";
+            return new ResponseEntity<String>("WRT_ERR", HttpStatus.BAD_REQUEST);
         }
     }
 
