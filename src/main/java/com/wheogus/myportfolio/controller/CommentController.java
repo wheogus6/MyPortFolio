@@ -1,5 +1,6 @@
 package com.wheogus.myportfolio.controller;
 
+import com.wheogus.myportfolio.dao.BoardDao;
 import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.CommentDto;
 import com.wheogus.myportfolio.service.BoardService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,61 +24,30 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    CommentService service;
+    CommentService commentService;
     @Autowired
     BoardService boardService;
 
-//    @GetMapping("/list")
-//    public String commentList(Model model, BoardDto boardDto){
-//        try {
-//            Integer num = boardDto.getNum();
-//            List<CommentDto> list = service.getList(num);
-//            model.addAttribute("commentList", list);
-//            Instant startOfToday = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant();
-//            model.addAttribute("startOfToday", startOfToday.toEpochMilli());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "redirect:/board/read";
-//    }
 
-    @GetMapping("/write")
-    public ResponseEntity<List<CommentDto>> list(Integer num) {
-        List<CommentDto> list = null;
-        try {
-            list = service.getList(num);
-            return new ResponseEntity<List<CommentDto>>(list, HttpStatus.OK);  // 200
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<List<CommentDto>>(HttpStatus.BAD_REQUEST); // 400
-        }
-    }
+
+
 
 
     @PostMapping("/write")
-    public ResponseEntity<String> write(CommentDto commentDto, Integer num, HttpSession session, Model model) {
+    public String write(CommentDto commentDto, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
         String commenter = (String)session.getAttribute("id");
         commentDto.setCommenter(commenter);
-        commentDto.setNum(num);
 
-        System.out.println("commentDto = " + commentDto);
-
-        try {
-            if(service.write(commentDto)!=1)
-                throw new Exception("Write failed.");
-
-            return new ResponseEntity<>("WRT_OK", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<String>("WRT_ERR", HttpStatus.BAD_REQUEST);
-        }
+        commentService.write(commentDto);
+        return "redirect:/board/read?num=" + commentDto.getNum();
     }
 
     @DeleteMapping("/comments/{cno}")
     public ResponseEntity<String> remove(@PathVariable Integer cno, Integer num, HttpSession session) {
         String commenter = (String) session.getAttribute("id");
         try {
-            int rowCnt = service.delete(cno, num, commenter);
+            int rowCnt = commentService.delete(cno, num, commenter);
             if (rowCnt != 1) {
                 throw new Exception("Delete Failed");
             }
@@ -93,7 +64,7 @@ public class CommentController {
         commentDto.setComment(commenter);
         commentDto.setCno(cno);
         try {
-            if (service.modify(commentDto)!=1){
+            if (commentService.modify(commentDto)!=1){
                 throw new Exception("Write failed!");
             }
             return new ResponseEntity<>("MOD_OK", HttpStatus.OK);

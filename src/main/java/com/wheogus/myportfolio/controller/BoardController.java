@@ -3,9 +3,12 @@ package com.wheogus.myportfolio.controller;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.wheogus.myportfolio.dao.BoardDao;
 import com.wheogus.myportfolio.domain.BoardDto;
+import com.wheogus.myportfolio.domain.CommentDto;
 import com.wheogus.myportfolio.domain.PageHandler;
 import com.wheogus.myportfolio.domain.SearchCondition;
 import com.wheogus.myportfolio.service.BoardService;
+import com.wheogus.myportfolio.service.CommentService;
+import com.wheogus.myportfolio.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,8 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+    @Autowired
+    CommentService commentService;
 
     private boolean loginCheck(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -66,6 +71,12 @@ public class BoardController {
             model.addAttribute(boardDto);
             model.addAttribute("page", page);
             model.addAttribute("pageSize", pageSize);
+
+            //댓글조회
+            List<CommentDto> comment = null;
+            comment = commentService.getList(num);
+            model.addAttribute("comment", comment);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

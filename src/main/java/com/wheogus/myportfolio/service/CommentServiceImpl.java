@@ -34,9 +34,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int delete(Integer cno, Integer num, String commenter) throws Exception {
-        int rowCnt = boardDao.updateCommentCnt(num, -1);
-        rowCnt = commentDao.delete(cno, commenter);
-        return rowCnt;
+        boardDao.updateCommentCnt(num, -1);
+
+        return commentDao.delete(cno, commenter);
     }
     @Override
     @Transactional(rollbackFor = Exception.class)

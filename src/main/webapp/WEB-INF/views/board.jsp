@@ -119,53 +119,39 @@
         $("#listBtn").on("click", function(){
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
-
-        $("#writeComment").on("click", function(){
-            location.href="<c:url value='/comments/write'/>";
-        });
     });
 </script>
 </body>
 
+<div>
+    <form method="post" action="<c:url value="/comments/write"/>">
 
-<%--<c:if test="${mode ne 'new'}">--%>
-<body>
-<div class="container">
-    <br>
-    <h3>댓글 달기</h3>
-    <link rel="stylesheet" href="<c:url value='/css/commentStyle.css'/>">
+        <p>
+            <input name="commenter" value="${commentDto.commenter}">
+        </p>
+        <p>
+            <textarea rows="5" cols="50" name="comment"></textarea>
+        </p>
+        <p>
+            <input type="hidden" name="num" value="${boardDto.num}">
+            <button type="submit">댓글 작성</button>
+        </p>
+    </form>
+</div>
 
-    <textarea name="newcomment" id="comment" rows="3" placeholder="댓글을 입력해주세요."><c:out value='${commentDto.comment}'/></textarea>
-    <button type="button" id="writeComment" class="btn comment-write"><i class="fa fa-pencil"></i>등록</button>
+<!-- 댓글 리스트 -->
+<c:forEach items="${comment}" var="comment">
+    <li>
+        <div>
+            <p>${comment.commenter}}</p>
+            <p>${comment.num}</p>
+<%--            <p>${comment.commenter}</p>--%>
+            <p>${comment.comment}</p>
+        </div>
+    </li>
+</c:forEach>
 
-
-    <br><br>
-    <h3>댓글</h3>
-
-
-<%--    <input type="hidden" name="num" value="${commentDto.num}">--%>
-<%--    <input name="commenter" type="text" value="<c:out value= '${commentDto.commenter}'/>">--%>
-<%--    <textarea name="comment" id="comment" rows="3"><c:out value='${commentDto.comment}'/></textarea>--%>
-<%--    <c:if test="${boardDto.writer eq loginId}">--%>
-<%--        <button type="button" id="modifyComment" class="btn comment-modify"><i class="fa fa-edit"></i> 수정</button>--%>
-<%--        <button type="button" id="removeComment" class="btn comment-remove"><i class="fa fa-trash"></i> 삭제</button>--%>
-<%--    </c:if>--%>
-
-    <table>
-        <tr>
-            <th class="no">댓글번호</th>
-            <th class="commenter">아이디</th>
-            <th class="comment">댓글</th>
-        </tr>
-        <c:forEach var="commentDto" items="${commentList}">
-            <tr>
-                <td class="no">${commentDto.num}</td>
-                <td class="commenter">${commentDto.commenter}</td>
-                <td class="comment">${commentDto.comment}</td>
-            </tr>
-        </c:forEach>
-    </table>
 
 </body>
-<%--</c:if>--%>
+
 </html>
