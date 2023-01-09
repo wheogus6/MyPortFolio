@@ -29,48 +29,35 @@ public class CommentController {
     BoardService boardService;
 
 
-
-
-
-
     @PostMapping("/write")
     public String write(CommentDto commentDto, HttpSession session) throws Exception {
-        String commenter = (String)session.getAttribute("id");
+        String commenter = (String) session.getAttribute("id");
         commentDto.setCommenter(commenter);
 
         commentService.write(commentDto);
         return "redirect:/board/read?num=" + commentDto.getNum();
     }
-
-    @DeleteMapping("/comments/{cno}")
-    public ResponseEntity<String> remove(@PathVariable Integer cno, Integer num, HttpSession session) {
-        String commenter = (String) session.getAttribute("id");
-        try {
-            int rowCnt = commentService.delete(cno, num, commenter);
-            if (rowCnt != 1) {
-                throw new Exception("Delete Failed");
-            }
-            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping("/write")
+    public String write(Model model, Integer num){
+        model.addAttribute("commentMode", "modify");
+        return "redirect:/board/read?num=" + num;
     }
 
-    @PatchMapping("/comments/{cno}")
-    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto commentDto, HttpSession session) {
+    @PostMapping("/delete")
+    public String remove(Integer cno, Integer num, HttpSession session) throws Exception {
         String commenter = (String) session.getAttribute("id");
-        commentDto.setComment(commenter);
-        commentDto.setCno(cno);
-        try {
-            if (commentService.modify(commentDto)!=1){
-                throw new Exception("Write failed!");
-            }
-            return new ResponseEntity<>("MOD_OK", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("MOD_ERR", HttpStatus.BAD_REQUEST);
-        }
+
+        commentService.delete(cno, num, commenter);
+
+        return "redirect:/board/read?num=" + num;
+    }
+
+
+    @PostMapping("/modify")
+    public String modify(CommentDto commentDto) throws Exception{
+        commentService.modify(commentDto);
+        return "redirect:/board/read?num=" + commentDto.getNum();
     }
 }
+
 

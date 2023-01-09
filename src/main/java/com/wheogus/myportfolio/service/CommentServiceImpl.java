@@ -2,7 +2,6 @@ package com.wheogus.myportfolio.service;
 
 import com.wheogus.myportfolio.dao.BoardDao;
 import com.wheogus.myportfolio.dao.CommentDao;
-import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.CommentDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
