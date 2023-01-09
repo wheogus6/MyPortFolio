@@ -127,9 +127,6 @@
     <form method="post" action="<c:url value="/comments/write"/>">
 
         <p>
-            <input name="commenter" value="${commentDto.commenter}">
-        </p>
-        <p>
             <textarea rows="5" cols="50" name="comment"></textarea>
         </p>
         <p>
@@ -143,7 +140,7 @@
 <c:forEach items="${comment}" var="comment">
     <li>
         <div>
-            <p>${comment.commenter}}</p>
+            <p>${comment.commenter}</p>
             <p>${comment.num}</p>
 <%--            <p>${comment.commenter}</p>--%>
             <p>${comment.comment}</p>

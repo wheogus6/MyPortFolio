@@ -34,8 +34,7 @@ public class CommentController {
 
 
     @PostMapping("/write")
-    public String write(CommentDto commentDto, HttpServletRequest request) throws Exception {
-        HttpSession session = request.getSession();
+    public String write(CommentDto commentDto, HttpSession session) throws Exception {
         String commenter = (String)session.getAttribute("id");
         commentDto.setCommenter(commenter);
 
