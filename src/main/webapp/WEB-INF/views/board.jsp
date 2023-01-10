@@ -56,9 +56,7 @@
         <c:if test="${mode eq 'new'}">
             <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록</button>
         </c:if>
-        <c:if test="${mode ne 'new'}">
-            <button type="button" id="writeNewBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 글쓰기</button>
-        </c:if>
+
         <c:if test="${boardDto.writer eq loginId}">
             <button type="button" id="modifyBtn" class="btn btn-modify"><i class="fa fa-edit"></i> 수정</button>
             <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button>
@@ -82,9 +80,7 @@
             }
             return true;
         }
-        $("#writeNewBtn").on("click", function(){
-            location.href="<c:url value='/board/write'/>";
-        });
+
         $("#writeBtn").on("click", function(){
             let form = $("#form");
             form.attr("action", "<c:url value='/board/write'/>");
@@ -119,11 +115,14 @@
         $("#listBtn").on("click", function(){
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
+
     });
 </script>
 </body>
 
+<!-- 댓글 작성란 -->
 <div>
+    <c:if test="${mode ne 'new'}">
     <form method="post" action="<c:url value="/comments/write"/>">
 
         <p>
@@ -132,18 +131,32 @@
         <p>
             <input type="hidden" name="num" value="${boardDto.num}">
             <button type="submit">댓글 작성</button>
+            <br>
+            <br>
         </p>
     </form>
+</c:if>
 </div>
 
+
 <!-- 댓글 리스트 -->
+<h2>댓글 (${boardDto.comment_cnt})개</h2>
 <c:forEach items="${comment}" var="comment">
     <li>
         <div>
+            <p>${comment.cno}</p>
             <p>${comment.commenter}</p>
             <p>${comment.num}</p>
-<%--            <p>${comment.commenter}</p>--%>
-            <p>${comment.comment}</p>
+            <textarea rows="3" ${commentMode=="modify" ? "" : "readonly=readonly"}>${comment.comment}</textarea>
+            <p>
+                <c:if test="${comment.commenter eq loginId}">
+
+                <a href="/comments/modify" style="color: black">댓글수정</a> /
+                <a  style="color: black">댓글삭제</a>
+
+                </c:if>
+            </p>
+            <br>
         </div>
     </li>
 </c:forEach>

@@ -37,11 +37,11 @@ public class CommentController {
         commentService.write(commentDto);
         return "redirect:/board/read?num=" + commentDto.getNum();
     }
-    @GetMapping("/write")
-    public String write(Model model, Integer num){
-        model.addAttribute("commentMode", "modify");
-        return "redirect:/board/read?num=" + num;
-    }
+//    @GetMapping("/modify")
+//    public String modify(Model model, Integer num){
+//        model.addAttribute("commentMode", "modify");
+//        return "redirect:/board/read?num=" + num;
+//    }
 
     @PostMapping("/delete")
     public String remove(Integer cno, Integer num, HttpSession session) throws Exception {
@@ -53,8 +53,10 @@ public class CommentController {
     }
 
 
-    @PostMapping("/modify")
-    public String modify(CommentDto commentDto) throws Exception{
+    @PatchMapping("/modify")
+    public String modify(CommentDto commentDto, HttpSession session) throws Exception{
+        String commenter = (String) session.getAttribute("id");
+        commentDto.setCommenter(commenter);
         commentService.modify(commentDto);
         return "redirect:/board/read?num=" + commentDto.getNum();
     }
