@@ -17,6 +17,7 @@ public interface CommentDao {
 
     int insert(CommentDto commentDto) throws Exception;
 
-    int deleteAll();
+
+    int deleteBoardComment(Integer num) throws Exception;
 }
 

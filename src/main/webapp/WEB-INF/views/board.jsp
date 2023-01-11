@@ -130,7 +130,7 @@
         </p>
         <p>
             <input type="hidden" name="num" value="${boardDto.num}">
-            <button type="submit">댓글 작성</button>
+            <button type="submit">댓글작성</button>
             <br>
             <br>
         </p>
@@ -143,24 +143,58 @@
 <h2>댓글 (${boardDto.comment_cnt})개</h2>
 <c:forEach items="${comment}" var="comment">
     <li>
-        <div>
+        <form id="commentList">
+
+            <input type="hidden" name="cno" value="${comment.cno}">
+            <input type="hidden" name="num" value="${comment.num}">
+<%--            <input  name="commenter" value="${comment.commenter}">--%>
+
             <p>${comment.cno}</p>
             <p>${comment.commenter}</p>
             <p>${comment.num}</p>
-            <textarea rows="3" ${commentMode=="modify" ? "" : "readonly=readonly"}>${comment.comment}</textarea>
+            <textarea rows="3" name="comment" ${commentMode=="modify" ? "" : "readonly='readonly'"}>${comment.comment}</textarea>
             <p>
                 <c:if test="${comment.commenter eq loginId}">
+                <button id="comment_modify">댓글수정</button> /
+                <button id="comment_delete" onclick="location.href<c:url value='/comments/delete/'/>">댓글삭제</button>
 
-                <a href="/comments/modify" style="color: black">댓글수정</a> /
-                <a  style="color: black">댓글삭제</a>
+
 
                 </c:if>
             </p>
             <br>
-        </div>
+        </form>
     </li>
 </c:forEach>
+<script>
+    $("#comment_modify").on("click", function() {
+        let form = $("#commentList");
+        let isReadonly = $("textarea[name=comment]").attr('readonly');
+        // 1. 읽기 상태이면, 수정 상태로 변경
+        if (isReadonly == 'readonly') {
+            $("textarea[name=comment]").attr('readonly', false);
+            $("#comment_modify").html("댓글작성");
+            return;
+        }
+        form.attr("action", <c:url value="/comments/modify${comment}"/>);
+        form.attr("method", "post");
+        if (formCheck())
+            form.submit();
+    });
 
+    // $("#comment_delete").on("click", function(){
+    //     if(!confirm("정말로 삭제하시겠습니까?")) return;
+    //     var cno = $(this).data("cno");
+    //     function remove(cno){
+    //         console.log(cno);
+    //       $.ajax({
+    //           type : "delete",
+    //           url : "c:url value='/comments/delete/"+cno,
+    //
+    //       })
+    //     }
+    // });
+</script>
 
 </body>
 

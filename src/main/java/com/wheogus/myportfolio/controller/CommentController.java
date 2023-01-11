@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,18 +44,17 @@ public class CommentController {
 //        return "redirect:/board/read?num=" + num;
 //    }
 
-    @PostMapping("/delete")
-    public String remove(Integer cno, Integer num, HttpSession session) throws Exception {
+    @DeleteMapping("/delete/{cno}")
+    public String remove(@PathVariable("cno") Integer cno, Integer num, HttpSession session) throws Exception {
         String commenter = (String) session.getAttribute("id");
-
         commentService.delete(cno, num, commenter);
 
-        return "redirect:/board/read?num=" + num;
+        return "redirect:/board/read";
     }
 
 
-    @PatchMapping("/modify")
-    public String modify(CommentDto commentDto, HttpSession session) throws Exception{
+    @PostMapping("/modify")
+    public String modify(@RequestBody CommentDto commentDto, HttpSession session) throws Exception{
         String commenter = (String) session.getAttribute("id");
         commentDto.setCommenter(commenter);
         commentService.modify(commentDto);

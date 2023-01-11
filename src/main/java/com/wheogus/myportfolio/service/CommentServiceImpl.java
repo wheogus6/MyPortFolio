@@ -48,4 +48,8 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.update(commentDto);
     }
 
+    @Override
+    public int deleteBoardComment(Integer num) throws Exception{
+        return commentDao.deleteBoardComment(num);
+    }
 }

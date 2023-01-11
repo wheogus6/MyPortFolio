@@ -52,7 +52,7 @@ public class CommentDaoImpl implements CommentDao{
     }
 
     @Override
-    public int deleteAll() {
-        return session.delete(namespace + "deleteAll");
+    public int deleteBoardComment(Integer num) throws Exception{
+        return session.delete(namespace + "deleteBoardComment", num);
     }
 }

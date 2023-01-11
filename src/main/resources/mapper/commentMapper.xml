@@ -17,7 +17,7 @@
     </select>
 
     <select id="count" parameterType="int" resultType="int">
-        select count(*) from commnet
+        select count(*) from comment
         where num = #{num}
     </select>
 
@@ -29,16 +29,16 @@
     </insert>
 
     <delete id="delete" parameterType="map">
-        delete from comment where cno = #{cno} and commenter = #{commneter}
+        delete from comment where cno = #{cno} and commenter = #{commenter}
     </delete>
 
     <update id="update" parameterType="CommentDto">
         update comment
         set comment = #{comment}
-        where cno = #{cno} and commenter = #{commneter}
+        where cno = #{cno} and commenter = #{commenter}
     </update>
 
-    <delete id="deleteAll">
-        delete from comment
+    <delete id="deleteBoardComment" parameterType="int">
+        delete from comment where num = #{num}
     </delete>
 </mapper>

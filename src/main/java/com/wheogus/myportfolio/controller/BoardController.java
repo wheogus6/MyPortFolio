@@ -115,8 +115,9 @@ public class BoardController {
         try {
             model.addAttribute("page", page);
             model.addAttribute("pageSize", pageSize);
-
+            commentService.deleteBoardComment(num);
             int rowCnt = boardService.remove(num, writer);
+
             if (rowCnt != 1){
                 throw new Exception("remove Error");}            //나중에 괄호 수정
             ratter.addFlashAttribute("msg", "DEL_OK");

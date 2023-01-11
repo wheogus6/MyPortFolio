@@ -82,7 +82,7 @@
             <c:forEach var="boardDto" items="${list}">
                 <tr>
                     <td class="no">${boardDto.num}</td>
-                    <td class="title"><a style="text-decoration: none; color: black;" href="<c:url value="/board/read${ph.sc.queryString}&num=${boardDto.num}"/>"><c:out value="${boardDto.title}"/> </a></td>
+                    <td class="title"><a style="text-decoration: none; color: black;" href="<c:url value="/board/read${ph.sc.queryString}&num=${boardDto.num}"/>"><c:out value="${boardDto.title}"/>   (${boardDto.comment_cnt})</a></td>
                     <td class="writer">${boardDto.writer}</td>
                     <c:choose>
                         <c:when test="${boardDto.reg_date.time >= startOfToday}">

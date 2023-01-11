@@ -19,4 +19,6 @@ public interface CommentService {
     int write(CommentDto commentDto) throws Exception;
 
     int modify(CommentDto commentDto) throws Exception;
+
+    int deleteBoardComment(Integer num) throws Exception;
 }
