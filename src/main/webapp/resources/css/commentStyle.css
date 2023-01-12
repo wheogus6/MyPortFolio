@@ -41,7 +41,7 @@ li{
 .commentCnt{
     width : 50%;
     margin : auto;
-
+    float: left;
 }
 
 .comment{
@@ -71,3 +71,4 @@ li{
 .commentArea{
     background: #f8f8f8;
 }
+

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+<input type="hidden" name="num" value="${boardDto.num}"> <!--게시물 번호 하나를 from태그에서 빼야함 ㄱdelete redirect시 필요!!! -->
     <form method="post" id="comment" action="">
       <p>${comment.cno}번 댓글</p>
       <p>
@@ -27,7 +27,7 @@
       <p>
           <input type="hidden" name="cno" value="${comment.cno}">
           <input type="hidden" name="num" value="${comment.num}">
-          <input type="hidden" name="num" value="${boardDto.num}">
+
          <button type="submit" id="mod_comment"><i class="fa fa-edit"></i> 수정</button>
          <button type="submit" id="del_comment"><i class="fa fa-trash"></i> 삭제</button>
       </p>

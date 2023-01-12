@@ -135,6 +135,8 @@
             <button type="submit" class="comment write-btn"><i class="fa fa-pencil"></i> 댓글 작성</button>
             <br>
             <br>
+        <h3 class="commentCnt">댓글 ${boardDto.comment_cnt}개</h3>
+        <br><br>
         </p>
     </form>
 </c:if>
@@ -142,8 +144,7 @@
 
 
 <!-- 댓글 리스트 -->
-<h3 class="commentCnt">댓글 ${boardDto.comment_cnt}개</h3>
-<br>
+
 <c:forEach items="${comment}" var="comment">
     <li>
         <form id="commentList" class="comment_list" action="" method="">
@@ -153,7 +154,7 @@
 <%--            <input  name="commenter" value="${comment.commenter}">--%>
 
 <%--            <p>${comment.cno}</p>--%>
-            <p>작성자 : ${comment.commenter}</p>
+            <p class="commenter">작성자 : ${comment.commenter}</p>
 <%--            <p>${comment.num}</p>--%>
             <textarea rows="3" name="comment" ${commentMode=="modify" ? "" : "readonly='readonly'"}>${comment.comment}</textarea>
             <p>

@@ -41,11 +41,11 @@ public class CommentController {
 
 
     @PostMapping("/delete")
-    public String remove(Integer cno, Integer num) throws Exception {
+    public String remove(Integer cno, Integer num, HttpServletRequest request) throws Exception {
 
         commentService.delete(cno, num);
 
-        return "redirect:/board/read?num";
+        return "redirect:/board/read?num=" + num;
     }
 
 
