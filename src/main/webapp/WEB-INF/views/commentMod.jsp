@@ -11,25 +11,40 @@
   <title>comment mod or del</title>
 
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
+    <script src="../p5.min.js"></script>
 </head>
 
 <body>
 
-    <form method="post" action="<c:url value="/comments/modify"/>">
-
-      <p>${comment.cno}</p>
+    <form method="post" id="comment" action="">
+      <p>${comment.cno}번 댓글</p>
       <p>
-        <label>작성자</label>
+        <label>작성자 : </label>
         <input type="text" name="commneter" readonly="readonly" value="${comment.commenter}"/>
       </p>
       <textarea rows="3" cols="50" name="comment">${comment.comment}</textarea>
       <p>
-        <input type="hidden" name="cno" value="${comment.cno}">
-        <input type="hidden" name="num" value="${comment.num}">
-         <button type="submit">수정</button>
-         <button type="submit">삭제</button>
+          <input type="hidden" name="cno" value="${comment.cno}">
+          <input type="hidden" name="num" value="${comment.num}">
+          <input type="hidden" name="num" value="${boardDto.num}">
+         <button type="submit" id="mod_comment"><i class="fa fa-edit"></i> 수정</button>
+         <button type="submit" id="del_comment"><i class="fa fa-trash"></i> 삭제</button>
       </p>
     </form>
+<script>
+    $("#del_comment").on("click", function (){
+        if(!confirm("정말로 삭제하시겠습니까?")) return;
+        let comment = $("#comment");
+        comment.attr("action", "<c:url value="/comments/delete"/>");
+        comment.attr("method", "post");
+    })
+    $("#mod_comment").on("click", function (){
+        let comment = $("#comment");
+        comment.attr("action", "<c:url value="/comments/modify"/>");
+        comment.attr("method", "post");
+    })
+</script>
 </body>
 
 </html>

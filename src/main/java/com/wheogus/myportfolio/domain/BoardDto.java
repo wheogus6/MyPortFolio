@@ -25,8 +25,9 @@ public class BoardDto {
         return num;
     }
 
-    public void setNum(Integer num) {
+    public Integer setNum(Integer num) {
         this.num = num;
+        return 0;
     }
 
     public String getTitle() {

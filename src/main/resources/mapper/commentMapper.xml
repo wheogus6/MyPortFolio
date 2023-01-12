@@ -29,8 +29,8 @@
             (#{num}, #{comment}, #{commenter}, now())
     </insert>
 
-    <delete id="delete" parameterType="CommentDto">
-        delete from comment where cno = #{cno} and num = #{num}
+    <delete id="delete" parameterType="int">
+        delete from comment where cno = #{cno}
     </delete>
 
     <update id="update" parameterType="CommentDto">

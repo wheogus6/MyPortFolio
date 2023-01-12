@@ -24,3 +24,50 @@ comment {
 .btn:hover {
     text-decoration: underline;
 }
+li{
+    list-style: none;
+}
+
+.commentWrite{
+    width : 50%;
+    margin : auto;
+}
+
+.comment_list{
+    width : 50%;
+    margin : auto;
+}
+
+.commentCnt{
+    width : 50%;
+    margin : auto;
+
+}
+
+.comment{
+    background-color: rgb(236, 236, 236);
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+}
+
+.commentMod{
+    width: 95px;
+    display: block;
+    border: none;
+    background-color: rgb(236, 236, 236);
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    float: right;
+}
+
+.commentArea{
+    background: #f8f8f8;
+}

@@ -38,30 +38,28 @@ public class CommentController {
         commentService.write(commentDto);
         return "redirect:/board/read?num=" + commentDto.getNum();
     }
-//    @GetMapping("/modify")
-//    public String modify(Model model, Integer num){
-//        model.addAttribute("commentMode", "modify");
-//        return "redirect:/board/read?num=" + num;
-//    }
+
 
     @PostMapping("/delete")
     public String remove(Integer cno, Integer num) throws Exception {
 
         commentService.delete(cno, num);
 
-        return "redirect:/board/read?num" + num;
+        return "redirect:/board/read?num";
     }
 
 
     @GetMapping("/modify")
-    public String getModify(@RequestParam("num") Integer num, @RequestParam("cno") Integer cno, Model model) throws Exception {
+    public String getModify(@RequestParam("num") Integer num, @RequestParam("cno") Integer cno, Model model, BoardDto boardDto) throws Exception {
         CommentDto commentDto = new CommentDto();
         commentDto.setCno(cno);
         commentDto.setNum(num);
 
+        Integer boardNum = boardDto.setNum(num);
         CommentDto comment = commentService.read(commentDto);
 
         model.addAttribute("comment", comment);
+        model.addAttribute("boardNum", boardNum);
         return "commentMod";
     }
 

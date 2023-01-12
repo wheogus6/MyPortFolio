@@ -14,7 +14,7 @@
             "space_man.png" rel="shortcut icon" type="image/x-icon">
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/boardStyle.css'/>">
+
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -46,6 +46,7 @@
     if(msg=="MOD_ERR") alert("게시물 수정에 실패하였습니다. 다시 시도해 주세요.");
 </script>
 <div class="container">
+    <link rel="stylesheet" href="<c:url value='/css/boardStyle.css'/>">
     <h2 class="writing-header">게시판 ${mode=="new" ? "글쓰기" : "읽기"}</h2>
     <form id="form" class="frm" action="" method="post">
         <input type="hidden" name="num" value="${boardDto.num}">
@@ -119,18 +120,19 @@
     });
 </script>
 </body>
-
+<br>
 <!-- 댓글 작성란 -->
 <div>
     <c:if test="${mode ne 'new'}">
-    <form method="post" action="<c:url value="/comments/write"/>">
+        <link rel="stylesheet" href="<c:url value='/css/commentStyle.css'/>">
+    <form method="post" class="commentWrite" action="<c:url value="/comments/write"/>">
 
         <p>
-            <textarea rows="5" cols="50" name="comment"></textarea>
+            <textarea class="commentArea" rows="5" cols="50" name="comment" placeholder="댓글 쓰기..."></textarea>
         </p>
         <p>
             <input type="hidden" name="num" value="${boardDto.num}">
-            <button type="submit">댓글작성</button>
+            <button type="submit" class="comment write-btn"><i class="fa fa-pencil"></i> 댓글 작성</button>
             <br>
             <br>
         </p>
@@ -140,32 +142,30 @@
 
 
 <!-- 댓글 리스트 -->
-<h2>댓글 (${boardDto.comment_cnt})개</h2>
+<h3 class="commentCnt">댓글 ${boardDto.comment_cnt}개</h3>
+<br>
 <c:forEach items="${comment}" var="comment">
     <li>
-        <form id="commentList" action="" method="">
+        <form id="commentList" class="comment_list" action="" method="">
 
             <input type="hidden" name="cno" value="${comment.cno}">
             <input type="hidden" name="num" value="${comment.num}">
 <%--            <input  name="commenter" value="${comment.commenter}">--%>
 
-            <p>${comment.cno}</p>
-            <p>${comment.commenter}</p>
-            <p>${comment.num}</p>
+<%--            <p>${comment.cno}</p>--%>
+            <p>작성자 : ${comment.commenter}</p>
+<%--            <p>${comment.num}</p>--%>
             <textarea rows="3" name="comment" ${commentMode=="modify" ? "" : "readonly='readonly'"}>${comment.comment}</textarea>
             <p>
                 <c:if test="${comment.commenter eq loginId}">
-
-                    <a href="<c:url value="/comments/modify?num=${boardDto.num}&cno=${comment.cno}"/> " style="color: black">댓글수정</a>
-
-
-
+                    <a class="commentMod" href="<c:url value="/comments/modify?num=${boardDto.num}&cno=${comment.cno}"/>" ><i class="fa fa-edit"></i> 댓글 수정</a>
                 </c:if>
             </p>
             <br>
         </form>
     </li>
 </c:forEach>
+
 <%--<script>--%>
 <%--    $(document).ready(function(){--%>
 <%--    $("#comment_modify").on("click", function() {--%>
