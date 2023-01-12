@@ -10,10 +10,11 @@
         where num = #{num}
     </select>
 
-    <select id="select" parameterType="int" resultType="CommentDto">
+    <select id="select" parameterType="CommentDto" resultType="CommentDto">
         select cno, num, comment, commenter, reg_date
         from comment
         where cno = #{cno}
+        and num = #{num}
     </select>
 
     <select id="count" parameterType="int" resultType="int">
@@ -28,14 +29,14 @@
             (#{num}, #{comment}, #{commenter}, now())
     </insert>
 
-    <delete id="delete" parameterType="map">
-        delete from comment where cno = #{cno} and commenter = #{commenter}
+    <delete id="delete" parameterType="CommentDto">
+        delete from comment where cno = #{cno} and num = #{num}
     </delete>
 
     <update id="update" parameterType="CommentDto">
         update comment
         set comment = #{comment}
-        where cno = #{cno} and commenter = #{commenter}
+        where cno = #{cno} and num = #{num}
     </update>
 
     <delete id="deleteBoardComment" parameterType="int">

@@ -44,22 +44,33 @@ public class CommentController {
 //        return "redirect:/board/read?num=" + num;
 //    }
 
-    @DeleteMapping("/delete/{cno}")
-    public String remove(@PathVariable("cno") Integer cno, Integer num, HttpSession session) throws Exception {
-        String commenter = (String) session.getAttribute("id");
-        commentService.delete(cno, num, commenter);
+    @PostMapping("/delete")
+    public String remove(Integer cno, Integer num) throws Exception {
 
-        return "redirect:/board/read";
+        commentService.delete(cno, num);
+
+        return "redirect:/board/read?num" + num;
     }
 
 
+    @GetMapping("/modify")
+    public String getModify(@RequestParam("num") Integer num, @RequestParam("cno") Integer cno, Model model) throws Exception {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setCno(cno);
+        commentDto.setNum(num);
+
+        CommentDto comment = commentService.read(commentDto);
+
+        model.addAttribute("comment", comment);
+        return "commentMod";
+    }
+
     @PostMapping("/modify")
-    public String modify(@RequestBody CommentDto commentDto, HttpSession session) throws Exception{
-        String commenter = (String) session.getAttribute("id");
-        commentDto.setCommenter(commenter);
+    public String postModify(CommentDto commentDto) throws Exception{
         commentService.modify(commentDto);
         return "redirect:/board/read?num=" + commentDto.getNum();
     }
+
 }
 
 

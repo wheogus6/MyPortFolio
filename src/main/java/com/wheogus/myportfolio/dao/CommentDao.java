@@ -9,9 +9,11 @@ public interface CommentDao {
 
     List<CommentDto> selectAll(Integer num) throws Exception;
 
-    CommentDto select(Integer cno) throws Exception;
 
-    int delete(Integer cno, String commenter) throws Exception;
+    CommentDto select(CommentDto commentDto) throws Exception;
+
+    int delete(Integer cno) throws Exception;
+
 
     int update(CommentDto commentDto) throws Exception;
 

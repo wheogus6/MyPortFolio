@@ -27,15 +27,14 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.selectAll(num);
     }
     @Override
-    public CommentDto read(Integer cno) throws Exception {
-        return commentDao.select(cno);
+    public CommentDto read(CommentDto commentDto) throws Exception {
+        return commentDao.select(commentDto);
     }
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int delete(Integer cno, Integer num, String commenter) throws Exception {
+    public int delete(Integer cno, Integer num) throws Exception {
         boardDao.updateCommentCnt(num, -1);
-
-        return commentDao.delete(cno, commenter);
+        return commentDao.delete(cno);
     }
     @Override
     @Transactional(rollbackFor = Exception.class)

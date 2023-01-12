@@ -10,10 +10,10 @@ public interface CommentService {
 
     List<CommentDto> getList(Integer num) throws Exception;
 
-    CommentDto read(Integer cno) throws Exception;
+    CommentDto read(CommentDto commentDto) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
-    int delete(Integer cno, Integer num, String commenter) throws Exception;
+    int delete(Integer cno, Integer num) throws Exception;
 
     @Transactional(rollbackFor = Exception.class)
     int write(CommentDto commentDto) throws Exception;
