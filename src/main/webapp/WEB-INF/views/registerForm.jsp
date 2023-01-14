@@ -16,7 +16,6 @@
             "space_man.png" rel="shortcut icon" type="image/x-icon">
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/registerFormStyle.css'/>">
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -33,7 +32,9 @@
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-        <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
+<%--        <c:if test="${loginId eq null}">--%>
+            <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
+<%--        </c:if>--%>
     </ul>
 
     <div class="icon">
@@ -46,6 +47,7 @@
 <div style="margin:auto;text-align:center;">
 
     <form:form modelAttribute="userDto">
+        <link rel="stylesheet" href="<c:url value='/css/registerFormStyle.css'/>">
     <div class="title">회원가입</div>
         <div id="msg" class="msg"><form:errors path="id"/></div>
     <label for="">아이디</label>

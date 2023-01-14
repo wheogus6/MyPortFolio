@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "icon" href =
-            "space_man.png" rel="shortcut icon" type="image/x-icon">
+<%--    <link rel = "icon" href =--%>
+<%--            "space_man.png" rel="shortcut icon" type="image/x-icon">--%>
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
@@ -30,7 +30,9 @@
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-        <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
+<%--        <c:if test="${loginId eq null}">--%>
+            <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
+<%--        </c:if>--%>
     </ul>
 
     <div class="icon">
@@ -39,10 +41,10 @@
     </div>
 
 </nav>
-<div class="main">
+<h1 id="clock" class="indexclock">00:00:00</h1>
+<h1 id = "greeting" class="hidden"></h1>
+<script src="js/clock.js">
 
-    홈에 뭐 해둘까?
-</div>
-
+</script>
 </body>
 </html>

@@ -23,5 +23,8 @@ a {text-decoration-line: none !important; color: white;}
     display: flex; list-style: none;}
 .icon li{padding: 0px 20px;}
 
+.indexclock{
+ text-align: center;
+}
 
 

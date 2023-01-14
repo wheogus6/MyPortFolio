@@ -31,7 +31,9 @@
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
+<%--<c:if test="${loginId eq null}">--%>
         <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
+<%--</c:if>--%>
     </ul>
 
     <div class="icon">
@@ -160,12 +162,25 @@
             <p>
                 <c:if test="${comment.commenter eq loginId}">
                     <a class="commentMod" href="<c:url value="/comments/modify?num=${boardDto.num}&cno=${comment.cno}"/>" ><i class="fa fa-edit"></i> 댓글 수정</a>
+<%--                    <a class="commentMod" href= "javascript:popup()" ><i class="fa fa-edit"></i> 댓글 수정</a>--%>
                 </c:if>
             </p>
             <br>
         </form>
     </li>
 </c:forEach>
+
+<%--<script>--%>
+<%--    function popup(){--%>
+<%--        let url = "/MyPortFolio/comments/modify?num=${boardDto.num}&cno=${comment.cno}";--%>
+
+<%--        let name = "popup test";--%>
+<%--        let option = "witdh = 500, height = 500, top = 100, left = 200";--%>
+
+<%--        window.open(url, name, option);--%>
+<%--    }--%>
+<%--</script>--%>
+
 
 <%--<script>--%>
 <%--    $(document).ready(function(){--%>

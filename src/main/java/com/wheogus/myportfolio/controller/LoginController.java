@@ -49,7 +49,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "loginForm";
     }
 
     public boolean loginCheck(String id, String pwd) {
