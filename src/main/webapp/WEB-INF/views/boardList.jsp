@@ -42,7 +42,7 @@
     </ul>
 
     <div class="icon">
-        <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href = "https://github.com/wheogus6"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
     </div>
 </nav>

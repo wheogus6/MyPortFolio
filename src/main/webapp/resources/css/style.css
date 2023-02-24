@@ -25,6 +25,14 @@ a {text-decoration-line: none !important; color: white;}
 
 .indexclock{
  text-align: center;
+    font-size: 80px;
+
+    transform: translate(0%, 90%);
+}
+.backend{
+    text-align: center;
+    font-size: 70px;
+    transform: translate(0%, 10%)
 }
 
 

@@ -37,7 +37,7 @@
     </ul>
 
     <div class="icon">
-        <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href = "https://github.com/wheogus6"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     </div>

@@ -29,21 +29,28 @@
     <ul class="list">
         <li><a href="<c:url value='/'/>">홈</a></li>
         <li><a href="<c:url value='/board/list'/>">게시판</a></li>
+        <li><a href="<c:url value='game/gamer'/>">게임</a></li>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-<%--        <c:if test="${loginId eq null}">--%>
-            <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
-<%--        </c:if>--%>
+        <li><a href="<c:url value='/register/addUser'/>">회원가입</a></li>
     </ul>
 
     <div class="icon">
-        <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href = "https://github.com/wheogus6"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
     </div>
 
 </nav>
 <h1 id="clock" class="indexclock">00:00:00</h1>
 <h1 id = "greeting" class="hidden"></h1>
+<br>
+<br>
+<br>
+<br>
+<h1 class="backend">조대현의 백엔드 게시판입니다.</h1>
+
 <script src="js/clock.js">
+
+
 
 </script>
 </body>

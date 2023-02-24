@@ -16,6 +16,8 @@
             "space_man.png" rel="shortcut icon" type="image/x-icon">
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/registerFormStyle.css'/>">
+
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
     <script src="../p5.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
@@ -38,16 +40,16 @@
     </ul>
 
     <div class="icon">
-        <li><a href = "https://github.com/"><i class="fa-brands fa-github"></i></a></li>
+        <li><a href = "https://github.com/wheogus6"><i class="fa-brands fa-github"></i></a></li>
         <li><a href = "https://www.google.co.kr/"><i class="fa-brands fa-google"></i></a></li>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     </div>
 </nav>
 
-<div style="margin:auto;text-align:center;">
-
+<section>
+<div style="text-align:center;">
     <form:form modelAttribute="userDto">
-        <link rel="stylesheet" href="<c:url value='/css/registerFormStyle.css'/>">
+
     <div class="title">회원가입</div>
         <div id="msg" class="msg"><form:errors path="id"/></div>
     <label for="">아이디</label>
@@ -68,8 +70,10 @@
     </div>
     <button>회원 가입</button>
     </form:form>
-
 </div>
+</section>
+</body>
+
 <script>
     function formCheck(frm) {
         let msg ='';
@@ -86,5 +90,5 @@
         }
     }
 </script>
-</body>
+
 </html>

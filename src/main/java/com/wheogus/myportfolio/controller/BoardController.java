@@ -1,7 +1,6 @@
 package com.wheogus.myportfolio.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.wheogus.myportfolio.dao.BoardDao;
+
 import com.wheogus.myportfolio.domain.BoardDto;
 import com.wheogus.myportfolio.domain.CommentDto;
 import com.wheogus.myportfolio.domain.PageHandler;
