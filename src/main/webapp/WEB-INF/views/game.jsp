@@ -10,8 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%--    <link rel = "icon" href =--%>
-<%--            "space_man.png" rel="shortcut icon" type="image/x-icon">--%>
+
     <title>Hello</title>
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
     <script src="https://kit.fontawesome.com/437ac62fbf.js" crossorigin="anonymous"></script>
@@ -40,15 +39,19 @@
     </div>
 
 </nav>
-<h1 id="clock" class="indexclock">00:00:00</h1>
-<h1 id = "greeting" class="hidden"></h1>
-<br>
-<br>
-<br>
-<br>
-<h1 class="backend">조대현의 백엔드 게시판입니다.</h1>
 
-<script src="js/clock.js"></script>
+<script src="js/game.js"></script>
+
+<nav>
+<button class="reload" onclick="window.location.reload()">다시하기</button>
+</nav>
+
+<div class="controller">
+    <h2>  게임 조작법</h2>
+    <p>  총알 발사 : 스페이스바</p>
+    <p>  왼쪽 이동 : 왼쪽 방향키</p>
+    <p>  오른쪽 이동 : 오른쪽 방향키</p>
+</div>
 
 </body>
 </html>

@@ -35,4 +35,33 @@ a {text-decoration-line: none !important; color: white;}
     transform: translate(0%, 10%)
 }
 
+canvas{
+    transform: translate(63%, 3%)
+
+}
+.reload{
+    background-color: rgb(106,78,182);
+    color : white;
+    width:200px;
+    height:35px;
+    font-size: 15px;
+    border : none;
+    border-radius: 5px;
+    margin : 20px 0 20px 0;
+    transform: translate(560%, -1580%);
+}
+.reload:active {
+    box-shadow: inset -.3rem -.1rem 1.4rem  #FBFBFB, inset .3rem .4rem .8rem #BEC5D0;
+    cursor: pointer;
+}
+
+.controller{
+    border: 1px solid rgb(106,78,182);
+    width:250px;
+    height:210px;
+    position : absolute;
+    border-radius: 10px;
+    text-align: center;
+    transform: translate(433.5%, -250%);
+}
 
